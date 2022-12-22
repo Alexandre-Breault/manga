@@ -1,5 +1,15 @@
 import { join } from "path";
 import fs from "fs";
+import matter from "gray-matter";
+import { Blog } from "../type/Blog";
+import { remark } from "remark";
+import html from "remark-html";
+import remarkGfm from "remark-gfm";
+
+const markdownToHtml = async (markdown: string) => {
+  const result = await remark().use(html).use(remarkGfm).process(markdown);
+  return result.toString();
+};
 
 const getDirectory = (path: string) => join(process.cwd(), path);
 const BLOG_DIR = getDirectory("/content/blogs");
@@ -13,12 +23,27 @@ const getBlogFileNames = () => {
 
 const getItemInPath = (filePath: string) => {
   const fileContent = fs.readFileSync(filePath, "utf-8");
-  return fileContent;
+  const { data, content } = matter(fileContent);
+  return { ...data, content } as Blog;
 };
-const getBlogs = () => {
+
+const getBlog = (name: string) => {
+  const blog = getItemInPath(join(BLOG_DIR, name));
+  blog.slug = name.replace(/\.md$/, "");
+  return blog;
+};
+
+const getBlogBySlug = async (slug: string) => {
+  const fileName = slug + ".md";
+  const blog = getBlog(fileName);
+  blog.content = await markdownToHtml(blog.content);
+  return blog;
+};
+
+const getBlogs = (): Blog[] => {
   const names = getBlogFileNames();
-  const item = names.map((name) => getItemInPath(join(BLOG_DIR, name)));
+  const item = names.map(getBlog);
   return item;
 };
 
-export { getBlogFileNames, getBlogs };
+export { getBlogFileNames, getBlogs, getBlogBySlug };
