@@ -11,7 +11,7 @@ async function getInitialBlogs() {
   return blogs;
 }
 
-const Page: NextPage = () => {
+const Page = () => {
   const blogs = use(getInitialBlogs());
   return (
     <div>
