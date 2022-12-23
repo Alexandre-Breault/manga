@@ -1,4 +1,5 @@
 export type Blog = {
+  numero: string;
   title: string;
   description: string;
   author: string;
@@ -10,4 +11,5 @@ export type Blog = {
   timeReading: {
     text: string;
   };
+  categorie: string;
 };

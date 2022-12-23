@@ -45,7 +45,7 @@ const getBlogBySlug = async (slug: string) => {
 
 const getBlogs = (): Blog[] => {
   const names = getBlogFileNames();
-  const item = names.map(getBlog);
+  const item = [...names.map(getBlog)].sort();
   return item;
 };
 

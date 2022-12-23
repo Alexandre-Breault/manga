@@ -17,12 +17,14 @@ const BlogHeader: FunctionComponent<Props> = ({ blog }) => {
               <div className="relative h-10 w-10 !mb-0">
                 <Image
                   priority
-                  objectFit="cover"
-                  width={100}
-                  height={100}
                   className="rounded-full"
                   src={blog.authorImage}
                   alt=""
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: "cover",
+                  }}
                 />
               </div>
             </a>
@@ -52,10 +54,13 @@ const BlogHeader: FunctionComponent<Props> = ({ blog }) => {
       <div className="h-96 bg-black mx-auto w-full relative">
         <Image
           priority
-          layout="fill"
-          objectFit="cover"
           src={blog.coverImage}
           alt=""
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
         />
       </div>
     </div>

@@ -1,6 +1,4 @@
-import DarkMode from "../src/components/DarkMode";
 import "../styles/globals.css";
-import { Providers } from "./providers";
 
 export default function RootLayout({
   children,
@@ -10,17 +8,15 @@ export default function RootLayout({
   return (
     <html>
       <head />
-      <body>
-        <Providers>
-          <div className="bg-white">
-            <div>
-              <DarkMode />
-            </div>
-            <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-              {children}
-            </div>
+      <body className="bg-gray-900">
+        <div className="container mx-auto">
+          <div className="flex justify-center flex-col bg-gray-700">
+            <h1 className="mb-4 text-center text-4xl md:text-5xl lg:text-6xl">
+              Manga
+            </h1>
+            {children}
           </div>
-        </Providers>
+        </div>
       </body>
     </html>
   );

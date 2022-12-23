@@ -1,6 +1,5 @@
 import { HiLightningBolt } from "react-icons/hi";
 import Link from "next/link";
-import React from "react";
 
 export default function DarkMode() {
   return (
