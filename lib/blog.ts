@@ -25,8 +25,7 @@ const getBlogFileNames = () => {
 const getItemInPath = (filePath: string) => {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-  const timeReading = readingTime(content);
-  return { ...data, content} as Blog;
+  return { ...data, content } as Blog;
 };
 
 const getBlog = (name: string) => {
@@ -38,7 +37,9 @@ const getBlog = (name: string) => {
 const getBlogBySlug = async (slug: string) => {
   const fileName = slug + ".md";
   const blog = getBlog(fileName);
+  const timeReading = readingTime(blog.content);
   blog.content = await markdownToHtml(blog.content);
+  blog.timeReading = timeReading;
   return blog;
 };
 

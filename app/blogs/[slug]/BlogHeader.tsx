@@ -11,13 +11,13 @@ const BlogHeader: FunctionComponent<Props> = ({ blog }) => {
     <div className="blog-detail-header">
       <div className="flex flex-row justify-between mb-2">
         <div className="flex items-center">
-          <p>{blog.timeReading.text}</p>
           <div className="flex-shrink-0">
             <a href="#">
               <span className="sr-only">{blog.author}</span>
               <div className="relative h-10 w-10 !mb-0">
                 <Image
                   priority
+                  objectFit="cover"
                   width={100}
                   height={100}
                   className="rounded-full"
@@ -35,6 +35,11 @@ const BlogHeader: FunctionComponent<Props> = ({ blog }) => {
             </p>
             <div className="flex space-x-1 text-sm text-gray-500">
               <time dateTime={blog.date}>{blog.date}</time>
+            </div>
+            <div className="flex space-x-1 text-sm text-gray-500">
+              <time dateTime={blog.timeReading.text}>
+                {blog.timeReading.text}
+              </time>
             </div>
           </div>
         </div>
