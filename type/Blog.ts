@@ -7,4 +7,7 @@ export type Blog = {
   content: string;
   slug: string;
   date: string;
+  timeReading: {
+    text: string;
+  };
 };

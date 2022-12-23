@@ -5,6 +5,7 @@ import { Blog } from "../type/Blog";
 import { remark } from "remark";
 import html from "remark-html";
 import remarkGfm from "remark-gfm";
+import readingTime from "reading-time";
 
 const markdownToHtml = async (markdown: string) => {
   const result = await remark().use(html).use(remarkGfm).process(markdown);
@@ -24,7 +25,8 @@ const getBlogFileNames = () => {
 const getItemInPath = (filePath: string) => {
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-  return { ...data, content } as Blog;
+  const timeReading = readingTime(content);
+  return { ...data, content} as Blog;
 };
 
 const getBlog = (name: string) => {

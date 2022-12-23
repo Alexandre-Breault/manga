@@ -11,14 +11,15 @@ const BlogHeader: FunctionComponent<Props> = ({ blog }) => {
     <div className="blog-detail-header">
       <div className="flex flex-row justify-between mb-2">
         <div className="flex items-center">
+          <p>{blog.timeReading.text}</p>
           <div className="flex-shrink-0">
             <a href="#">
               <span className="sr-only">{blog.author}</span>
               <div className="relative h-10 w-10 !mb-0">
                 <Image
                   priority
-                  layout="fill"
-                  objectFit="cover"
+                  width={100}
+                  height={100}
                   className="rounded-full"
                   src={blog.authorImage}
                   alt=""
